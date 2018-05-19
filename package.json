@@ -4,13 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "build": "babel ./testImport.js -d lib/",
-    "prepublish": "yarn run build"
+    "test": "jest"
   },
   "dependencies": {
     "react": "16.3.1",
-    "react-native": "0.55.4"
+    "react-native": "0.55.4",
+    "react-native-paper": "^1.8.0",
+    "react-native-vector-icons": "^4.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

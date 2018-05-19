@@ -5,8 +5,31 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import meusItems from './testImport';
+import { Platform, StyleSheet, Text, View, FlatList } from 'react-native';
+import TextPower from './components/TextPower';
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardCover,
+  Title,
+  Paragraph,
+} from 'react-native-paper';
+
+const MyComponent = () => (
+  <Card>
+    <CardContent>
+      <Title>Card title</Title>
+      <Paragraph>Card content</Paragraph>
+    </CardContent>
+    <CardCover source={{ uri: 'https://picsum.photos/700' }} />
+    <CardActions>
+      <Button>Cancel</Button>
+      <Button>Ok</Button>
+    </CardActions>
+  </Card>
+);
 
 const NOME1 = 'TESTE1 OI OI ';
 const NOME2 = 'TESTE2';
@@ -18,24 +41,31 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+  constructor() {
+    super();
+    this.state = {
+      posts: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({ posts: json });
+        console.log(json);
+      });
+  }
+
   render() {
-    console.log('oi');
-    const clientes = [
-      { id: 1, nome: 'Joao' },
-      { id: 2, nome: 'Jose' },
-      { id: 3, nome: 'Maria' },
-      { id: 4, nome: 'Felipe' },
-      { id: 5, nome: 'Matheus' },
-    ];
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native! Hello!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-        <Text>{meusItems.Item1()}</Text>
-        <Text>{meusItems.minhaFuncao()}</Text>
-        <Text>{meusItems.Item3()}</Text>
-        {meusItems.renterItems(clientes)}
+        <MyComponent />
+        <FlatList
+          data={this.state.posts}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => <TextPower title={item.title} />}
+        />
       </View>
     );
   }
@@ -46,12 +76,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#fff',
   },
   welcome: {
-    fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    fontSize: 30,
+    color: 'red',
   },
   instructions: {
     textAlign: 'center',
