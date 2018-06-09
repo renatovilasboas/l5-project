@@ -27,7 +27,7 @@ export default function TextPower(props) {
   });
 
   return (
-    <Card style={{ marginBottom: 8 }}>
+    <Card key={`card${post.id}`} style={{ marginBottom: 8 }}>
       <CardContent>
         <Text style={styles.avatar}>{post.title}</Text>
         <View style={styles.infoUser}>
