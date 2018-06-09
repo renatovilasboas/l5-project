@@ -1,18 +1,56 @@
 import React from 'react';
-import { Text } from 'react-native';
 import PropTypes from 'prop-types';
-
-const styles = {
-  text: {
-    fontSize: 20,
-    color: 'red',
-  },
-};
+import { Text, View, StyleSheet, Image } from 'react-native';
+import { Card, CardContent, Paragraph } from 'react-native-paper';
 
 export default function TextPower(props) {
-  return <Text style={styles.text}>{props.title}</Text>;
+  const { post } = props;
+
+  const styles = StyleSheet.create({
+    avatar: {
+      fontSize: 18,
+      marginLeft: 12,
+      fontWeight: 'bold',
+      marginBottom: 20,
+    },
+    image: {
+      width: 24,
+      height: 24,
+    },
+    infoUser: {
+      flex: 1,
+      marginLeft: 10,
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+    },
+  });
+
+  return (
+    <Card style={{ marginBottom: 8 }}>
+      <CardContent>
+        <Text style={styles.avatar}>{post.title}</Text>
+        <View style={styles.infoUser}>
+          <View>
+            <Image
+              borderRadius={50}
+              style={styles.image}
+              source={{ uri: post.photo }}
+            />
+          </View>
+          <Paragraph>{post.name}</Paragraph>
+        </View>
+      </CardContent>
+    </Card>
+  );
 }
 
 TextPower.propTypes = {
-  title: PropTypes.string.isRequired,
+  post: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    photo: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+  }).isRequired,
 };
