@@ -13,7 +13,9 @@ export default class Menu extends Component {
     };
   }
 
-  handleIndexChange = (index) => this.setState({ index });
+  handleIndexChange(index) {
+    this.setState({ index });
+  }
 
   render() {
     const scenes = renderScene(this.props);
@@ -21,7 +23,7 @@ export default class Menu extends Component {
     return (
       <BottomNavigation
         navigationState={this.state}
-        onIndexChange={this.handleIndexChange}
+        onIndexChange={(index) => this.handleIndexChange(index)}
         renderScene={scenes}
       />
     );

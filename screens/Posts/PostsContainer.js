@@ -7,8 +7,7 @@ import { requestPosts, requestUsers } from './api';
 import { requestPostsSuccess, requestUsersSuccess } from './actions';
 import selector from './selector';
 
-type Props = {};
-class PostsContainer extends Component<Props> {
+class PostsContainer extends Component {
   async componentDidMount() {
     const { requestPostsSuccess, requestUsersSuccess } = this.props;
     const posts = await requestPosts();
@@ -26,13 +25,6 @@ class PostsContainer extends Component<Props> {
     );
   }
 }
-
-/* const mapStateToProps = (state) => ({
-  postsToView: generatePostsToView(
-    state.postsContainer.posts,
-    state.postsContainer.users
-  ),
-}); */
 
 const mapStateToProps = (state) => ({
   postsToView: selector(state),
