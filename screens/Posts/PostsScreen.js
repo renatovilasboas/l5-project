@@ -8,7 +8,14 @@ const PostsScreen = (props) => (
     <FlatList
       data={props.posts}
       keyExtractor={(item) => item[props.keyNameId].toString()}
-      renderItem={({ item }) => <TextPower post={item} />}
+      renderItem={({ item }) => (
+        <TextPower
+          post={item}
+          handleClick={(post) =>
+            props.navigation.navigate('DetailPost', { post })
+          }
+        />
+      )}
     />
   </View>
 );
@@ -22,6 +29,7 @@ PostsScreen.propTypes = {
     body: PropTypes.string.isRequired,
   }).isRequired).isRequired,
   keyNameId: PropTypes.string.isRequired,
+  navigation: PropTypes.object.isRequired,
 };
 
 export default PostsScreen;

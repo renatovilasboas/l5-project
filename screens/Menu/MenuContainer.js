@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { BottomNavigation } from 'react-native-paper';
 import { renderScene, routes } from './routes';
 
-type Props = {};
-export default class Menu extends Component<Props> {
+export default class Menu extends Component {
   constructor() {
     super();
 
@@ -17,11 +16,13 @@ export default class Menu extends Component<Props> {
   handleIndexChange = (index) => this.setState({ index });
 
   render() {
+    const scenes = renderScene(this.props);
+
     return (
       <BottomNavigation
         navigationState={this.state}
         onIndexChange={this.handleIndexChange}
-        renderScene={renderScene}
+        renderScene={scenes}
       />
     );
   }

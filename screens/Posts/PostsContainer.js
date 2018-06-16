@@ -88,7 +88,11 @@ export default class PostsContainer extends Component<Props> {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <PostsScreen posts={this.state.postsToView} keyNameId="id" />
+        <PostsScreen
+          {...this.props}
+          posts={this.state.postsToView}
+          keyNameId="id"
+        />
       </View>
     );
   }
