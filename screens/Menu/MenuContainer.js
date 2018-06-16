@@ -6,6 +6,8 @@ type Props = {};
 export default class Menu extends Component<Props> {
   constructor() {
     super();
+
+    /* eslint-disable */
     this.state = {
       index: 0,
       routes: [...routes],

@@ -6,7 +6,8 @@
 
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import MenuContainer from './screens/Menu/Main';
+import { createStackNavigator } from 'react-navigation';
+import MenuContainer from './screens/Menu/MenuContainer';
 
 const App = () => (
   <View style={styles.container}>
@@ -21,4 +22,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default createStackNavigator(
+  {
+    Home: App,
+  },
+  {
+    initialRouteName: 'Home',
+  }
+);
