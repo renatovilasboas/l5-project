@@ -28,7 +28,7 @@ export default function TextPower(props) {
 
   return (
     <Card key={`card${post.id}`} style={{ marginBottom: 8 }}>
-      <CardContent>
+      <View>
         <Text style={styles.avatar}>{post.title}</Text>
         <View style={styles.infoUser}>
           <View>
@@ -40,7 +40,7 @@ export default function TextPower(props) {
           </View>
           <Paragraph>{post.name}</Paragraph>
         </View>
-      </CardContent>
+      </View>
     </Card>
   );
 }

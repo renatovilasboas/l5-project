@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { FlatList, Text, View } from 'react-native';
-import TextPower from '../components/TextPower';
-import requestUrl from '../utils/request';
+import { View } from 'react-native';
+import requestUrl from '../../utils/request';
+import PostsScreen from './PostsScreen';
 
 const photos = [
   {
@@ -50,7 +49,7 @@ const photos = [
 ];
 
 type Props = {};
-export default class Posts extends Component<Props> {
+export default class PostsContainer extends Component<Props> {
   constructor() {
     super();
     this.state = {
@@ -87,30 +86,10 @@ export default class Posts extends Component<Props> {
   }
 
   render() {
-    // const { posts, keyNameId } = props;
-    const posts = this.state.postsToView;
-    const keyNameId = 'id';
-
     return (
       <View style={{ flex: 1 }}>
-        <FlatList
-          data={posts}
-          keyExtractor={(item) => item[keyNameId].toString()}
-          renderItem={({ item }) => <TextPower post={item} />}
-        />
+        <PostsScreen posts={this.state.postsToView} keyNameId="id" />
       </View>
     );
   }
 }
-
-/* Posts.propTypes = {
-  posts: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-  }).isRequired,
-  keyNameId: PropTypes.string.isRequired,
-};
- */
