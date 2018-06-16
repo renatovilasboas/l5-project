@@ -3,17 +3,12 @@ import { connect } from 'react-redux';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import PostsScreen from './PostsScreen';
-import { requestPosts, requestUsers } from './api';
-import { requestPostsSuccess, requestUsersSuccess } from './actions';
+import { requestPosts } from './actions';
 import selector from './selector';
 
 class PostsContainer extends Component {
   async componentDidMount() {
-    const { requestPostsSuccess, requestUsersSuccess } = this.props;
-    const posts = await requestPosts();
-    requestPostsSuccess(posts);
-    const users = await requestUsers();
-    requestUsersSuccess(users);
+    this.props.requestPosts();
   }
 
   render() {
@@ -31,8 +26,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  requestPostsSuccess,
-  requestUsersSuccess,
+  requestPosts,
 };
 
 PostsContainer.propTypes = {
@@ -43,8 +37,7 @@ PostsContainer.propTypes = {
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
   }).isRequired).isRequired,
-  requestPostsSuccess: PropTypes.func.isRequired,
-  requestUsersSuccess: PropTypes.func.isRequired,
+  requestPosts: PropTypes.func.isRequired,
 };
 
 export default connect(
